@@ -17,8 +17,13 @@ namespace HOK.Core.WpfUtilities
 
         public RelayCommand(Action<object> execute, Predicate<object> canExecute)
         {
-            this.execute = execute ?? throw new ArgumentNullException(nameof(execute));
-            this.canExecute = canExecute ?? throw new ArgumentNullException(nameof(canExecute));
+            if (execute != null) this.execute = execute;
+            else throw new ArgumentNullException(nameof(execute));
+
+            if (canExecute != null) this.canExecute = canExecute;
+            else throw new ArgumentNullException(nameof(canExecute));
+            //this.execute = execute ?? throw new ArgumentNullException(nameof(execute));
+            //this.canExecute = canExecute ?? throw new ArgumentNullException(nameof(canExecute));
         }
 
         public event EventHandler CanExecuteChanged
