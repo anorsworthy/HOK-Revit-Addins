@@ -23,7 +23,7 @@ namespace HOK.MissionControl.Tools.DTMTool
             _updaterId = new UpdaterId(addinId, UpdaterGuid);
             _catDictionary.Add("Grids", BuiltInCategory.OST_Grids);
             _catDictionary.Add("Levels", BuiltInCategory.OST_Levels);
-            _catDictionary.Add("Views", BuiltInCategory.OST_Views);
+            //_catDictionary.Add("Views", BuiltInCategory.OST_Views);
             _catDictionary.Add("Scope Boxes", BuiltInCategory.OST_VolumeOfInterest);
             _catDictionary.Add("RVT Links", BuiltInCategory.OST_RvtLinks);
         }
@@ -140,32 +140,32 @@ namespace HOK.MissionControl.Tools.DTMTool
                             }
                         }
                             break;
-                        case "Views":
-                        {
-                            var viewTemplates = new FilteredElementCollector(doc)
-                                .WherePasses(catFilter)
-                                .WhereElementIsNotElementType()
-                                .Cast<View>()
-                                .Where(x => x.IsTemplate)
-                                .ToList();
+                        //case "Views":
+                        //{
+                        //    var viewTemplates = new FilteredElementCollector(doc)
+                        //        .WherePasses(catFilter)
+                        //        .WhereElementIsNotElementType()
+                        //        .Cast<View>()
+                        //        .Where(x => x.IsTemplate)
+                        //        .ToList();
 
-                            if (viewTemplates.Any())
-                            {
-                                foreach (var view in viewTemplates)
-                                {
-                                    var reportingInfo = new ReportingElementInfo(
-                                        configId, 
-                                        UpdaterGuid.ToString(), 
-                                        centralPath, 
-                                        trigger.CategoryName, 
-                                        trigger.Description, 
-                                        view.Id, 
-                                        view.UniqueId);
-                                    _reportingElements.Add(reportingInfo);
-                                }
-                            }
-                        }
-                            break;
+                        //    if (viewTemplates.Any())
+                        //    {
+                        //        foreach (var view in viewTemplates)
+                        //        {
+                        //            var reportingInfo = new ReportingElementInfo(
+                        //                configId, 
+                        //                UpdaterGuid.ToString(), 
+                        //                centralPath, 
+                        //                trigger.CategoryName, 
+                        //                trigger.Description, 
+                        //                view.Id, 
+                        //                view.UniqueId);
+                        //            _reportingElements.Add(reportingInfo);
+                        //        }
+                        //    }
+                        //}
+                        //    break;
                         default:
                         {
                             var elements = new FilteredElementCollector(doc)

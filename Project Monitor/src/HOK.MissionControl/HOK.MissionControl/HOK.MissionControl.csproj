@@ -204,6 +204,7 @@
     <Compile Include="Tools\DTMTool\DTMUpdater.cs" />
     <Compile Include="Tools\DTMTool\DTMUtils\GridUtils.cs" />
     <Compile Include="Tools\DTMTool\DTMViewModel.cs" />
+    <Compile Include="Tools\DTMTool\DtmViewTemplateOverrides.cs" />
     <Compile Include="Tools\DTMTool\DTMWindow.xaml.cs">
       <DependentUpon>DTMWindow.xaml</DependentUpon>
     </Compile>

@@ -18,6 +18,7 @@ using HOK.MissionControl.Core.Utils;
 using HOK.MissionControl.Tools.Communicator;
 using HOK.MissionControl.Tools.Communicator.Messaging;
 using HOK.MissionControl.Tools.Communicator.Socket;
+using HOK.MissionControl.Tools.DTMTool;
 using HOK.MissionControl.Tools.HealthReport;
 using HOK.MissionControl.Utils;
 #endregion
@@ -96,18 +97,24 @@ namespace HOK.MissionControl.Tools.MissionControl
                             AppCommand.Instance.DoorUpdaterInstance.Register(doc, updater);
                         });
                     }
-                    else if (string.Equals(updater.UpdaterId, AppCommand.Instance.DtmUpdaterInstance.UpdaterGuid.ToString(), 
+                    else if (string.Equals(updater.UpdaterId,
+                        AppCommand.Instance.DtmUpdaterInstance.UpdaterGuid.ToString(),
                         StringComparison.OrdinalIgnoreCase))
                     {
                         ProcessTriggerRecords(centralPath);
 
-                        AppCommand.EnqueueTask(app =>
-                        {
-                            AppCommand.Instance.DtmUpdaterInstance.Register(doc, updater);
-                        });
+                        AppCommand.EnqueueTask(
+                            app => { AppCommand.Instance.DtmUpdaterInstance.Register(doc, updater); });
 
-                        DTMTool.DtmSynchOverrides.CreateReloadLatestOverride();
-                        DTMTool.DtmSynchOverrides.CreateSynchToCentralOverride();
+                        DtmSynchOverrides.CreateReloadLatestOverride();
+                        DtmSynchOverrides.CreateSynchToCentralOverride();
+
+                        foreach (var trigger in updater.CategoryTriggers)
+                        {
+                            if (!trigger.IsEnabled || trigger.CategoryName != "Views") continue;
+
+                            DtmViewTemplateOverrides.CreateViewTemplatesOverride();
+                        }
                     }
                     else if (string.Equals(updater.UpdaterId, Properties.Resources.LinkUnloadTrackerGuid, 
                         StringComparison.OrdinalIgnoreCase))

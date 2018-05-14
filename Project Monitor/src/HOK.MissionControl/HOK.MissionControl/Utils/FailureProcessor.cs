@@ -1,7 +1,6 @@
 ﻿using Autodesk.Revit.DB.Events;
 using HOK.MissionControl.Tools.CADoor;
 using HOK.MissionControl.Tools.DTMTool;
-using HOK.MissionControl.Tools.SheetTracker;
 
 namespace HOK.MissionControl.Utils
 {
@@ -25,10 +24,6 @@ namespace HOK.MissionControl.Utils
             {
                 DTMFailure.ProcessFailure(sender, args);
             }
-            //else if (RevisionFailure.IsRevisionModified)
-            //{
-            //    RevisionFailure.ProcessFailure(sender, args);
-            //}
             IsFailureFound = false;
         }
     }
