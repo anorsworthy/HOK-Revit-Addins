@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>Material Generator</Name>
+    <Assembly>HOK.MaterialGenerator\HOK.MaterialGenerator.dll</Assembly>
+    <AddInId>7c0c9a43-7327-4604-94e3-656d7692a2c1</AddInId>
+    <FullClassName>HOK.MaterialGenerator.AppCommand</FullClassName>
+    <VendorId>Konrad K Sobon</VendorId>
+    <VendorDescription>HOK</VendorDescription>
+  </AddIn>
+</RevitAddIns>
