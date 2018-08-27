@@ -5,7 +5,7 @@ using System.Reflection;
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("HOK Group")]
-[assembly: AssemblyCopyright("Copyright © HOK Group 2018")]
+[assembly: AssemblyCopyright("Copyright Â© HOK Group 2018")]
 [assembly: AssemblyTrademark("Jinsol Kim, Konrad K Sobon")]
 [assembly: AssemblyCulture("")]
 
