@@ -69,7 +69,7 @@ namespace HOK.MissionControl.Core.Schemas.FilePaths
                     var regMatch = regServer.Match(centralPath);
                     if (regMatch.Success)
                     {
-                        FileLocation = regMatch.Value.Trim();
+                        FileLocation = regMatch.Value.Trim().ToUpper();
                     }
                 }
                 else if (centralPath.StartsWith("\\\\group\\hok\\", StringComparison.OrdinalIgnoreCase))
@@ -80,8 +80,8 @@ namespace HOK.MissionControl.Core.Schemas.FilePaths
                     if (regMatch.Success)
                     {
                         FileLocation = string.IsNullOrEmpty(regMatch.Groups[1].Value)
-                            ? regMatch.Groups[2].Value.Trim()
-                            : regMatch.Groups[1].Value.Trim();
+                            ? regMatch.Groups[2].Value.Trim().ToUpper()
+                            : regMatch.Groups[1].Value.Trim().ToUpper();
                     }
                 }
             }
@@ -133,21 +133,22 @@ namespace HOK.MissionControl.Core.Schemas.FilePaths
         /// <returns>True if file path is valid, otherwise false.</returns>
         public static bool IsValidFilePath(string centralPath)
         {
-            var result = false;
-            if (centralPath.StartsWith("rsn://", StringComparison.OrdinalIgnoreCase))
-            {
-                result = true;
-            }
-            else if (centralPath.StartsWith("\\\\group\\hok\\", StringComparison.OrdinalIgnoreCase))
-            {
-                result = true;
-            }
-            else if (centralPath.StartsWith("bim 360://", StringComparison.OrdinalIgnoreCase))
-            {
-                result = true;
-            }
+            //var result = false;
+            //if (centralPath.StartsWith("rsn://", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    result = true;
+            //}
+            //else if (centralPath.StartsWith("\\\\group\\hok\\", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    result = true;
+            //}
+            //else if (centralPath.StartsWith("bim 360://", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    result = true;
+            //}
 
-            return result;
+            //return result;
+            return true;
         }
 
         #endregion
