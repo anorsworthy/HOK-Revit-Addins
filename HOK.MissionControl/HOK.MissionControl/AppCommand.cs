@@ -221,6 +221,7 @@ namespace HOK.MissionControl
                 var centralPath = FileInfoUtil.GetCentralFilePath(doc);
                 if (string.IsNullOrEmpty(centralPath)) return;
 
+                doc.Application.WriteJournalComment("MISSON CONTROL: Syncing Started", true);
                 SynchTime["from"] = DateTime.UtcNow;
             }
             catch (Exception ex)
@@ -256,19 +257,20 @@ namespace HOK.MissionControl
 
                         if (string.Equals(updater.UpdaterId, Properties.Resources.HealthReportTrackerGuid, StringComparison.OrdinalIgnoreCase))
                         {
-                            Tools.MissionControl.MissionControl.ProcessModels(ActionType.Synch, doc, centralPath);
                             Tools.MissionControl.MissionControl.ProcessWorksets(ActionType.Synch, doc, centralPath);
 #if RELEASE2015 || RELEASE2016 || RELEASE2017
                             // (Konrad) We are not going to process warnings here.
 #else
                             Tools.MissionControl.MissionControl.ProcessWarnings(ActionType.Synch, doc, centralPath);
 #endif
+                            Tools.MissionControl.MissionControl.ProcessModels(ActionType.Synch, doc, centralPath);
                         }
                         else if (string.Equals(updater.UpdaterId, Properties.Resources.SheetsTrackerGuid, StringComparison.OrdinalIgnoreCase))
                         {
                             Tools.MissionControl.MissionControl.ProcessSheets(ActionType.Synch, doc, centralPath);
                         }
                     }
+                    doc.Application.WriteJournalComment("MISSON CONTROL: Syncing Completed", true);
                 }
             }
             catch (Exception ex)
